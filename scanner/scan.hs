@@ -1,11 +1,20 @@
 import System.IO
+import Data.Char (isDigit)
 
--- TODO figure out what the heck a do block does and how to handle IO
+-- TODO
+-- [] read in file char by char
+-- [] check if char is a TokenSymbol
+-- [] check if char is digit
+--    [] build up an integer
+-- [] put data in Token
+
+data Token = Token {tokenVal :: String, intVal :: Int}
+data TokenSymbol = PLUS | MINUS
+
 readChar :: Handle -> IO String
 readChar file = line
     where line = hGetLine file
 
-main :: IO ()
 main = do
     file <- openFile "urmom.txt" ReadMode
     line <- readChar file
