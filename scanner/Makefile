@@ -1,6 +1,9 @@
 .PHONY: all
 
-all: clean
+all: run clean
+
+run: scan.hs
+	ghc scan.hs -o scan
 
 clean:
 	rm -rf *.o *.hi
