@@ -4,8 +4,8 @@ import Data.Char (isDigit, digitToInt)
 -- TODO
 -- [x] read in file char by char
 -- [x] check if char is a TokenSymbol
--- [] check if char is digit
---    [] build up an integer
+-- [x] check if char is digit
+--    [x] build up an integer
 -- [] put data in Token
 
 data TokenSymbol = PLUS | MINUS | STAR | SLASH | INT_LIT | NONE deriving (Show)
@@ -34,7 +34,7 @@ readTokens [] = []
 readTokens (char:char_arr) 
   | isDigit char = processChar intStr ++ readTokens (drop (length intStr - 1) char_arr)
   | otherwise = processChar [char] ++ readTokens char_arr
-  where intStr = buildInt char_arr 
+  where intStr = buildInt (char:char_arr)
 
 main = do
     file <- openFile "urmom.txt" ReadMode
