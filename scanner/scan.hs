@@ -3,7 +3,7 @@ import Data.Char (isDigit)
 
 -- TODO
 -- [x] read in file char by char
--- [] check if char is a TokenSymbol
+-- [x] check if char is a TokenSymbol
 -- [] check if char is digit
 --    [] build up an integer
 -- [] put data in Token
@@ -23,7 +23,9 @@ processChar char
 -- given contents of file String, assign list of Tokens from characters
 readTokens :: String -> [Token]
 readTokens [] = []
-readTokens (char:char_arr) = processChar char ++ readTokens char_arr
+readTokens (char:char_arr) 
+  | isDigit char = [Token {tokenVal = NONE, intVal = 7}] ++ readTokens char_arr
+  | otherwise = processChar char ++ readTokens char_arr
 
 main = do
     file <- openFile "urmom.txt" ReadMode
