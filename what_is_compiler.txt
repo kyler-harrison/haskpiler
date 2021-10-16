@@ -1,0 +1,8 @@
+input: C src file
+output: assembly file (and then link (probs wont implement) and then use assembler to get executable)
+	
+4 steps of compilation:
+	1. lexical analysis: recognize tokens
+	2. grammar analysis: recognize structure
+	3. semantic analysis: understand meaning
+	4. translate meaning to assembly
