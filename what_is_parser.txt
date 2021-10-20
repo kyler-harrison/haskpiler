@@ -29,6 +29,6 @@ read in top node '+', look at its left and right child node
 evaluate '+' on 9 and 12, return value (21)
 
 implementing order of operations is semantic analysis and involves creating
-preference in expressions or something. will/can do after basic parser is 
+precedence in expressions or something. will/can do after basic parser is 
 written.
 
