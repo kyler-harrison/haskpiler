@@ -5,7 +5,7 @@ import Parser
 main = do
     file <- openFile "urmom.txt" ReadMode
     contents <- hGetContents file
-    let res = readTokens contents
+    let res = buildAST (readTokens contents)
     print res
     hClose file
 
