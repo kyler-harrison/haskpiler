@@ -1,11 +1,15 @@
 import System.IO
+import Types
 import Scan
 import Parser
 
 main = do
-    file <- openFile "urmom.txt" ReadMode
+    file <- openFile "valid.txt" ReadMode
     contents <- hGetContents file
-    let res = buildAST (readTokens contents)
-    print res
+    let tokens = readTokens contents
+    print tokens
+    let check = grammarCheck Token {tokenVal = NO_SYMBOL, tokenIntVal = 0}  tokens 
+    --let output = buildAST (readTokens contents)
+    print check
     hClose file
 
