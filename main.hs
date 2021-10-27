@@ -9,6 +9,8 @@ main = do
     let tokens = readTokens contents
     let check = grammarCheck Token {tokenVal = NO_SYMBOL, tokenIntVal = 0}  tokens 
     let tree = buildAST NO_NODE tokens
+    let eval = evaluateAST tree
     print tree
+    print eval
     hClose file
 
