@@ -3,8 +3,9 @@ module Parser where
 import Types (TokenSymbol (..), Token (..), NodeAST (..))
 
 -- TODO
-   --[x] function to build tree from Tokens using grammar 
-   --[x] function to evaluate tree
+   -- [x] function to build tree from Tokens using grammar 
+   -- [x] function to evaluate tree
+   -- [] implement op precedence
 
 -- evaluates the AST from the bottom up w/o precedence, i.e. 2 * 3 + 4 * 5 is evaluated as:
 -- 4 * 5 = 20, then 3 + 20 = 23, then 2 * 23 = 46
@@ -32,6 +33,7 @@ buildAST :: NodeAST -> [Token] -> NodeAST
 buildAST prevNode [] = prevNode
 buildAST prevNode (token:tokenLs) 
   | tokenVal token == INT_LIT = buildAST NodeAST {nodeOp = tokenVal token, nodeIntVal = tokenIntVal token, left = NO_NODE, right = NO_NODE} tokenLs
-  | tokenVal token /= INT_LIT = NodeAST {nodeOp = tokenVal token, nodeIntVal = 0, left = prevNode, right = buildAST NO_NODE tokenLs}  -- TODO should handle each operator with its own guard instead of just "not int"
+  | (tokenVal token == PLUS) || (tokenVal token == MINUS) || (tokenVal token == STAR) || (tokenVal token == SLASH)  = NodeAST {nodeOp = tokenVal token, nodeIntVal = 0, left = prevNode, right = buildAST NO_NODE tokenLs}
+  | otherwise = NO_NODE 
 
 
